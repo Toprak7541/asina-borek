@@ -1,0 +1,160 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-poppins);
+  --font-poppins: var(--font-poppins);
+  --font-montserrat: var(--font-montserrat);
+}
+
+/* Base Light Mode (Kraliyet Modu) */
+:root {
+  --background: #FCF9F1;
+  --foreground: #000000;
+  --surface: #ffffff;
+  --accent: #C5A028;
+  --primary: #722F37;
+  --border-color: rgba(197, 160, 40, 0.2);
+
+  /* V6 Tokens */
+  --royalGold: #C5A028;
+  --royalBurgundy: #722F37;
+}
+
+/* Dark Mode (Gece Modu) */
+.dark {
+  --background: #000000;
+  --foreground: #ffffff;
+  --surface: #0A0A0A;
+  --accent: #E21D1D;
+  --primary: #E21D1D;
+  --border-color: rgba(255, 255, 255, 0.05);
+
+  /* V6 Tokens */
+  --darkSurface: #0A0A0A;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-poppins), sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.5s ease, color 0.5s ease;
+  letter-spacing: -0.02em;
+  /* V6.0 Requirement */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-montserrat), sans-serif;
+  letter-spacing: -0.05em;
+  /* Assertive V6.0 Tighter Spacing */
+}
+
+/* Film Grain Layer */
+.film-grain {
+  position: fixed;
+  top: -100%;
+  left: -100%;
+  width: 300%;
+  height: 300%;
+  background: url("https://grainy-gradients.vercel.app/noise.svg");
+  background-repeat: repeat;
+  opacity: 0.02;
+  /* 2% opacity as requested */
+  pointer-events: none;
+  z-index: 9999;
+  animation: grain 8s steps(10) infinite;
+}
+
+@keyframes grain {
+
+  0%,
+  100% {
+    transform: translate(0, 0)
+  }
+
+  10% {
+    transform: translate(-5%, -10%)
+  }
+
+  20% {
+    transform: translate(-15%, 5%)
+  }
+
+  30% {
+    transform: translate(7%, -25%)
+  }
+
+  40% {
+    transform: translate(-5%, 25%)
+  }
+
+  50% {
+    transform: translate(-15%, 10%)
+  }
+
+  60% {
+    transform: translate(15%, 0%)
+  }
+
+  70% {
+    transform: translate(0%, 15%)
+  }
+
+  80% {
+    transform: translate(3%, 35%)
+  }
+
+  90% {
+    transform: translate(-10%, 10%)
+  }
+}
+
+/* Custom Scrollbar - Minimal High-Performance */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* FPS Optimizations */
+* {
+  box-sizing: border-box;
+}
+
+.will-change-transform {
+  will-change: transform, opacity;
+}
+
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Utility to hide scrollbar but allow scrolling */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
