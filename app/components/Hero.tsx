@@ -27,21 +27,46 @@ export default function Hero() {
                     <div className="absolute inset-0 bg-gradient-to-tr from-[var(--accent)]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
 
                     <div className="relative z-10 w-full">
+                        {/* V7.0 Slogan Integration */}
+                        <motion.span
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                            className="text-[var(--accent)] text-xs md:text-sm font-light italic tracking-[0.2em] uppercase mb-4 block font-montserrat"
+                        >
+                            {t("slogan")}
+                        </motion.span>
+
                         <motion.h1
                             key={t("heroTitle")}
                             initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, delay: 0.2 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
                             className="text-4xl md:text-5xl lg:text-6xl font-black text-[var(--foreground)] leading-[1.1] tracking-tighter mb-6 transition-colors duration-500 uppercase font-montserrat"
                         >
                             {t("heroTitle")}
                         </motion.h1>
 
+                        {/* Signature Highlight: Küt Böreği */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6, delay: 0.3 }}
+                            className="mb-8 p-4 bg-[var(--accent)]/5 border-l-2 border-[var(--accent)] inline-block rounded-r-2xl"
+                        >
+                            <p className="text-[var(--foreground)] text-sm md:text-base font-medium tracking-tight">
+                                ✨ {t("signatureHighlight")}
+                            </p>
+                        </motion.div>
+
                         <motion.p
                             key={t("heroSubtext")}
                             initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, delay: 0.4 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
                             className="text-base md:text-lg lg:text-xl text-gray-500 font-light mb-10 max-w-2xl font-poppins"
                         >
                             {t("heroSubtext")}

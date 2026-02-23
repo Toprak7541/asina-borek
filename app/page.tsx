@@ -4,6 +4,7 @@ import { LanguageProvider } from "./context/LanguageContext";
 import { ThemeProvider } from "./context/ThemeContext";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
+import About from "./components/About";
 import Menu from "./components/Menu";
 import Testimonial from "./components/Testimonial";
 import MapSection from "./components/MapSection";
@@ -40,11 +41,12 @@ function AppContent() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.15 }} // V7.0 Snappier transition
         >
           <Navbar />
           <main className="flex flex-col items-center justify-center w-full">
             <Hero />
+            <About />
             <Menu />
             <Testimonial />
             <MapSection />
@@ -57,6 +59,7 @@ function AppContent() {
     </div>
   );
 }
+
 
 export default function Home() {
   return (
