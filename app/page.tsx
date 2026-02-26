@@ -10,6 +10,7 @@ import GoogleReviews from "./components/GoogleReviews";
 import Testimonial from "./components/Testimonial";
 import MapSection from "./components/MapSection";
 import Footer from "./components/Footer";
+import ImageSlider from "./components/ImageSlider";
 import FloatingLocationBtn from "./components/FloatingLocationBtn";
 import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
 import { useLanguage } from "./context/LanguageContext";
@@ -48,7 +49,9 @@ function AppContent() {
           <main className="flex flex-col items-center justify-center w-full">
             <Hero />
             <About />
-            <GoogleReviews />
+// Eski karmaşık yapıyı sil, yerine bunu yapıştır:
+<GoogleReviews />
+<ImageSlider />
             <Menu />
             <Testimonial />
             <MapSection />

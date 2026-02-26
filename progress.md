@@ -1,18 +1,28 @@
 # Aşina Börek & Cafe - Progress Log
 
-## Versiyon 8.0 Roadmap (Gelecek Adımlar)
+## Versiyon 9.0 (Uygulandı)
 
-- [x] **Instagram Feed Entegrasyonu**
-  - Tasarım: Bento Grid içerisinde canlı akış kartı.
-  - Teknik: Instagram Graph API veya lightweight bir widget.
-  
+- [x] **Navigasyon & Smooth Scroll**
+  - Navbar'a **Hakkımızda** linki eklendi.
+  - `about`, `menu`, `konum` bölümlerine hem desktop hem mobil menüden yumuşak geçiş aktif.
+
+- [x] **Sonsuz Kayışlı Fotoğraf Galerisi (Infinite Carousel)**
+  - `app/components/ImageSlider.tsx` oluşturuldu.
+  - Galeri kaynağı `public/images/gallery/` dizinine bağlandı (`1.jpg` - `6.jpg` varsayılan).
+  - Soldan sağa kesintisiz, slow & steady premium akış animasyonu eklendi.
+  - Kartlarda hafif `border-radius` + `box-shadow` uygulandı.
+
+- [x] **Google Login & Sadakat Altyapısı (NextAuth.js Hazırlığı)**
+  - `app/api/auth/[...nextauth]/route.ts` altyapısı eklendi.
+  - Google Provider için `GOOGLE_CLIENT_ID` ve `GOOGLE_CLIENT_SECRET` env değişkenleri kullanıldı.
+  - Navbar sağ üstte giriş akışı için `Giriş Yap` / `Hoş geldin, [İsim]` alanı eklendi.
+  - Gelecekteki dijital sadakat kartı için `LoyaltyProfile` ve `LoyaltyUserModel` tasarlandı.
+
+## Backlog
+
+- [ ] **Instagram Feed Entegrasyonu** (Bunu sonra yapacağız demiştik)
 - [ ] **Google Yorumları (Live Reviews)**
-  - Tasarım: Testimonial bölümüne Google Business puanı ve son yorumlar.
-  - Teknik: Google Places API veya statik/dinamik veri çekme.
-
 - [ ] **Menü Filtreleme (Gelişmiş UX)**
-  - Tasarım: Kategori butonları (Börekler, Tatlılar, İçecekler vb.).
-  - Teknik: `MenuCard` listesinde anlık kategori bazlı filtreleme mantığı.
 
 ---
 *Son Güncelleme: 26.02.2026*
