@@ -20,7 +20,7 @@
 
 ## Backlog
 
-- [ ] **Instagram Feed Entegrasyonu**
+- [ ] **Instagram Feed Entegrasyonu** (Bunu sonra yapacağız demiştik)
 - [ ] **Google Yorumları (Live Reviews)**
 - [ ] **Menü Filtreleme (Gelişmiş UX)**
 
