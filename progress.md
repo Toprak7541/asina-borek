@@ -22,7 +22,7 @@
 
 - [ ] **Instagram Feed Entegrasyonu** (Bunu sonra yapacağız demiştik)
 - [ ] **Google Yorumları (Live Reviews)**
-- [ ] **Menü Filtreleme (Gelişmiş UX)**
+- [x] **Menü Altyapısı Tamamlandı**
 
 ---
 *Son Güncelleme: 26.02.2026*
