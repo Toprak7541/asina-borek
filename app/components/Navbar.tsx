@@ -5,7 +5,9 @@ import { useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import LanguageToggle from "./LanguageToggle";
 import StatusIndicator from "./StatusIndicator";
-import { Menu as MenuIcon, X } from "lucide-react";
+import AuthActions from "./AuthActions";
+import { Menu as MenuIcon, X, Moon, Sun } from "lucide-react";
+import { useTheme } from "../context/ThemeContext";
 
 export default function Navbar() {
     const { t } = useLanguage();
@@ -60,7 +62,7 @@ export default function Navbar() {
 
                 {/* Smooth-scroll Links (Desktop) */}
                 <div className="hidden md:flex items-center gap-12 absolute left-1/2 -translate-x-1/2">
-                    {["menu", "konum"].map((item) => (
+                    {["about", "menu", "konum"].map((item) => (
                         <motion.button
                             key={item}
                             whileHover={{ y: -2 }}
@@ -86,6 +88,7 @@ export default function Navbar() {
                         {t("takeawayCta") || "GEL-AL"}
                     </motion.button>
 
+                    <AuthActions />
                     <ThemeToggle />
                     <LanguageToggle />
 
@@ -127,7 +130,7 @@ export default function Navbar() {
                             </div>
 
                             <div className="flex flex-col gap-4">
-                                {["menu", "konum"].map((item) => (
+                                {["about", "menu", "konum"].map((item) => (
                                     <button
                                         key={item}
                                         onClick={() => scrollToSection(item)}
@@ -152,8 +155,7 @@ export default function Navbar() {
 }
 
 function ThemeToggle() {
-    const { theme, toggleTheme } = require("../context/ThemeContext").useTheme();
-    const { Moon, Sun } = require("lucide-react");
+    const { theme, toggleTheme } = useTheme();
 
     return (
         <motion.button
