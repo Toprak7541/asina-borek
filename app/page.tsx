@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import Menu from "./components/Menu";
+import GoogleReviews from "./components/GoogleReviews";
 import Testimonial from "./components/Testimonial";
 import MapSection from "./components/MapSection";
 import Footer from "./components/Footer";
@@ -47,6 +48,7 @@ function AppContent() {
           <main className="flex flex-col items-center justify-center w-full">
             <Hero />
             <About />
+            <GoogleReviews />
             <Menu />
             <Testimonial />
             <MapSection />

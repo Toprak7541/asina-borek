@@ -2,7 +2,7 @@
 
 ## Versiyon 8.0 Roadmap (Gelecek Adımlar)
 
-- [ ] **Instagram Feed Entegrasyonu**
+- [x] **Instagram Feed Entegrasyonu**
   - Tasarım: Bento Grid içerisinde canlı akış kartı.
   - Teknik: Instagram Graph API veya lightweight bir widget.
   
