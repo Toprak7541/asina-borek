@@ -49,7 +49,6 @@ function AppContent() {
           <main className="flex flex-col items-center justify-center w-full">
             <Hero />
             <About />
-// Eski karmaşık yapıyı sil, yerine bunu yapıştır:
 <GoogleReviews />
 <ImageSlider />
             <Menu />
