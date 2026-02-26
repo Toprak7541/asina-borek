@@ -9,12 +9,30 @@ interface GalleryImage {
 }
 
 const galleryImages: GalleryImage[] = [
-  { src: "/images/gallery/1.jpg", alt: "Aşina Börek galeri görseli 1" },
-  { src: "/images/gallery/2.jpg", alt: "Aşina Börek galeri görseli 2" },
-  { src: "/images/gallery/3.jpg", alt: "Aşina Börek galeri görseli 3" },
-  { src: "/images/gallery/4.jpg", alt: "Aşina Börek galeri görseli 4" },
-  { src: "/images/gallery/5.jpg", alt: "Aşina Börek galeri görseli 5" },
-  { src: "/images/gallery/6.jpg", alt: "Aşina Börek galeri görseli 6" },
+  {
+    src: "/images/gallery/AF1QipN5qCxJBJ15LvMF2vYBBdl_v7W.jpg",
+    alt: "Aşina Börek galeri görseli 1",
+  },
+  {
+    src: "/images/gallery/AF1QipNpkjYFKZxIVHLVp2Adq4C_17_F.jpg",
+    alt: "Aşina Börek galeri görseli 2",
+  },
+  {
+    src: "/images/gallery/AHVAweouD8MuCv45kqWnB8ZaRMeOocU1.jpg",
+    alt: "Aşina Börek galeri görseli 3",
+  },
+  {
+    src: "/images/gallery/AHVAweq9OtQ5B6XCdQHZsYodmAY8CQuk.jpg",
+    alt: "Aşina Börek galeri görseli 4",
+  },
+  {
+    src: "/images/gallery/AHVAwerNNRqbuERB53IAbAgDQt60MvE3.jpg",
+    alt: "Aşina Börek galeri görseli 5",
+  },
+  {
+    src: "/images/gallery/AHVAwerwmFOgzM2IJ8stX7d78T6bXqbc.jpg",
+    alt: "Aşina Börek galeri görseli 6",
+  },
 ];
 
 const carouselItems = [...galleryImages, ...galleryImages];
