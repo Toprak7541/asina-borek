@@ -2,6 +2,23 @@
 
 ## Versiyon 9.0 (Uygulandı)
 
+- [x] **Hero Section Görsel Yenilenmesi (Visual Fix)**
+  - Sağ hero görsel alanı dairesel premium amblem sunumuna taşındı.
+  - Siyah/keskin kutu görünümü kaldırılarak `var(--surface)` tabanında yumuşak gölge ve radius dengesi sağlandı.
+  - Amblem arkasına `var(--accent)` tabanlı radial glow eklendi.
+  - Framer Motion ile amblem için hafif floating animasyonu uygulandı.
+  - Hero metin/görsel yerleşimi `md:grid-cols-5` oranı ile dengelendi.
+
+- [x] **Esnek Giriş Sistemi (NextAuth Update)**
+  - `CredentialsProvider` eklendi (E-posta + Şifre).
+  - Google girişi opsiyon olarak korundu.
+  - Statik admin doğrulaması tanımlandı (`admin@asinaborek.com` / `123456`, env ile override destekli).
+
+- [x] **Giriş Modal Güncellemesi (UI/UX)**
+  - `Giriş Yap` akışı modal yapıya geçirildi.
+  - Modalda Google ile devam et, ayırıcı, e-posta/şifre alanları, giriş butonu ve "Şifremi Unuttum" bağlantısı eklendi.
+  - Credentials formu NextAuth callback endpoint'i ile bağlandı.
+
 - [x] **Navigasyon & Smooth Scroll**
   - Navbar'a **Hakkımızda** linki eklendi.
   - `about`, `menu`, `konum` bölümlerine hem desktop hem mobil menüden yumuşak geçiş aktif.

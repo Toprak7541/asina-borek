@@ -15,6 +15,9 @@ async function authHandler(req: Request) {
   try {
     const nextAuthPkg = (await dynamicImport("next-auth")) as { default: Function };
     const googlePkg = (await dynamicImport("next-auth/providers/google")) as { default: Function };
+    const credentialsPkg = (await dynamicImport("next-auth/providers/credentials")) as {
+      default: Function;
+    };
 
     const handler = nextAuthPkg.default({
       providers: [
@@ -22,9 +25,33 @@ async function authHandler(req: Request) {
           clientId: process.env.GOOGLE_CLIENT_ID ?? "",
           clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? "",
         }),
+        credentialsPkg.default({
+          name: "credentials",
+          credentials: {
+            email: { label: "E-posta", type: "email" },
+            password: { label: "Şifre", type: "password" },
+          },
+          authorize(credentials: { email?: string; password?: string }) {
+            const validEmail = process.env.AUTH_ADMIN_EMAIL ?? "admin@asinaborek.com";
+            const validPassword = process.env.AUTH_ADMIN_PASSWORD ?? "123456";
+
+            if (credentials.email === validEmail && credentials.password === validPassword) {
+              return {
+                id: "asina-admin",
+                name: "Aşina Yönetim",
+                email: validEmail,
+              };
+            }
+
+            return null;
+          },
+        }),
       ],
       session: {
         strategy: "jwt",
+      },
+      pages: {
+        signIn: "/",
       },
       callbacks: {
         async jwt({ token }: { token: { loyalty?: LoyaltyProfile } }) {
