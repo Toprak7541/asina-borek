@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { useLanguage } from "../context/LanguageContext";
 import { ArrowDown } from "lucide-react";
-import Image from "next/image";
 
 export default function Hero() {
     const { t } = useLanguage();
@@ -15,14 +14,14 @@ export default function Hero() {
     return (
         <div id="hero" className="relative h-screen w-full flex items-center justify-center bg-[var(--background)] px-4 pt-24 pb-8 overflow-hidden font-sans transition-colors duration-500">
 
-            <div className="max-w-7xl w-full mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 h-full max-h-[85vh]">
+            <div className="max-w-7xl w-full mx-auto grid grid-cols-1 md:grid-cols-5 gap-6 h-full max-h-[85vh]">
 
                 {/* Left (Large Tile): Headline */}
                 <motion.div
                     initial={{ opacity: 0, y: 50 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="md:col-span-2 bg-[var(--surface)] border border-[var(--border-color)] rounded-[32px] p-8 md:p-16 flex flex-col justify-end relative overflow-hidden group hover:border-[var(--accent)] transition-colors shadow-2xl"
+                    className="md:col-span-3 bg-[var(--surface)] border border-[var(--border-color)] rounded-[32px] p-8 md:p-16 flex flex-col justify-end relative overflow-hidden group hover:border-[var(--accent)] transition-colors shadow-2xl"
                 >
                     <div className="absolute inset-0 bg-gradient-to-tr from-[var(--accent)]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
 
@@ -81,19 +80,22 @@ export default function Hero() {
                     </div>
                 </motion.div>
 
-                {/* Right (Small Tile): High-Res Logo Glass Pulse */}
+                {/* Right (Small Tile): Refined Hero Emblem */}
                 <motion.div
                     initial={{ opacity: 0, x: 50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="hidden md:flex bg-[var(--surface)] border border-[var(--border-color)] rounded-[32px] p-8 flex-col items-center justify-center relative overflow-hidden group shadow-2xl hover:border-[var(--accent)] transition-colors"
+                    className="hidden md:flex md:col-span-2 bg-[var(--surface)] border border-[var(--border-color)] rounded-[32px] p-8 flex-col items-center justify-center relative overflow-hidden group shadow-2xl hover:border-[var(--accent)] transition-colors"
                 >
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,var(--accent)_0%,transparent_65%)] opacity-15" />
+
                     <motion.div
-                        animate={{ scale: [1, 1.05, 1] }}
-                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                        className="w-56 h-56 rounded-full bg-[var(--surface)]/30 backdrop-blur-3xl border border-[var(--border-color)] flex items-center justify-center relative z-10 shadow-[0_0_40px_var(--accent)]"
+                        animate={{ y: [0, -10, 0] }}
+                        transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+                        className="w-64 h-64 rounded-full bg-[var(--surface)] border border-[var(--border-color)] flex items-center justify-center relative z-10 shadow-[0_18px_40px_rgba(0,0,0,0.22)]"
                     >
-                        <div className="relative w-40 h-40 drop-shadow-2xl opacity-90 group-hover:opacity-100 transition-opacity">
+                        <div className="absolute inset-10 rounded-full bg-[radial-gradient(circle,var(--accent)_0%,transparent_68%)] opacity-20 blur-xl" />
+                        <div className="relative w-44 h-44 drop-shadow-2xl opacity-95 group-hover:opacity-100 transition-opacity">
                             <img src="/logo.png" alt="Aşina Börek Global Logo" className="object-contain w-full h-full" />
                         </div>
                     </motion.div>
@@ -132,4 +134,3 @@ export default function Hero() {
         </div>
     );
 }
-
