@@ -35,6 +35,9 @@
   - Navbar sağ üstte giriş akışı için `Giriş Yap` / `Hoş geldin, [İsim]` alanı eklendi.
   - Gelecekteki dijital sadakat kartı için `LoyaltyProfile` ve `LoyaltyUserModel` tasarlandı.
 
+- [x] **Auth Modal UX Düzeltmeleri**
+  - Kapatma butonu, backdrop click, blur + overlay, scroll lock, merkez hizalama, scale-up animasyon, input focus glow ve loading durumu eklendi.
+
 ## Backlog
 
 - [ ] **Instagram Feed Entegrasyonu** (Bunu sonra yapacağız demiştik)

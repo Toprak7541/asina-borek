@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { X } from "lucide-react";
 import type { LoyaltyProfile } from "../types/loyalty";
 
 interface SessionUser {
@@ -22,6 +23,7 @@ export default function AuthActions() {
   const [csrfToken, setCsrfToken] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     const loadSession = async () => {
@@ -64,8 +66,26 @@ export default function AuthActions() {
     void loadCsrfToken();
   }, [csrfToken, isModalOpen]);
 
+  useEffect(() => {
+    if (!isModalOpen) {
+      return;
+    }
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isModalOpen]);
+
   const handleGoogleSignIn = () => {
     window.location.href = "/api/auth/signin/google";
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setIsSubmitting(false);
   };
 
   const handleSignOut = () => {
@@ -90,22 +110,36 @@ export default function AuthActions() {
 
         <AnimatePresence>
           {isModalOpen && (
-            <>
+            <motion.div
+              className="fixed inset-0 z-[150] flex items-center justify-center p-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                onClick={() => setIsModalOpen(false)}
-                className="fixed inset-0 z-[150] bg-black/60 backdrop-blur-sm"
+                onClick={closeModal}
+                className="absolute inset-0 bg-[rgba(0,0,0,0.6)] backdrop-blur-[8px]"
               />
 
               <motion.div
-                initial={{ opacity: 0, y: 28, scale: 0.96 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: 10, scale: 0.98 }}
-                transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                className="fixed left-1/2 top-1/2 z-[160] w-[92vw] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-3xl border border-[var(--border-color)] bg-[var(--surface)] p-6 shadow-2xl"
+                initial={{ opacity: 0, scale: 0.88 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.94 }}
+                transition={{ duration: 0.26, ease: [0.16, 1, 0.3, 1] }}
+                className="relative z-[160] w-full max-w-md rounded-3xl border border-[var(--accent)]/50 bg-[var(--surface)] p-6 shadow-2xl"
               >
+                <button
+                  type="button"
+                  onClick={closeModal}
+                  className="absolute right-4 top-4 rounded-full border border-[var(--accent)]/40 p-1.5 text-[var(--foreground)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+                  aria-label="Giriş modalını kapat"
+                >
+                  <X size={16} />
+                </button>
+
                 <h3 className="text-xl font-black text-[var(--foreground)] font-montserrat tracking-tight">
                   Aşina Club&apos;a Hoş Geldiniz
                 </h3>
@@ -124,7 +158,12 @@ export default function AuthActions() {
                   <span className="h-px flex-1 bg-[var(--border-color)]" />
                 </div>
 
-                <form method="post" action="/api/auth/callback/credentials" className="space-y-3">
+                <form
+                  method="post"
+                  action="/api/auth/callback/credentials"
+                  className="space-y-3"
+                  onSubmit={() => setIsSubmitting(true)}
+                >
                   <input type="hidden" name="csrfToken" value={csrfToken} />
                   <input type="hidden" name="callbackUrl" value="/" />
 
@@ -135,7 +174,7 @@ export default function AuthActions() {
                     value={email}
                     onChange={(event) => setEmail(event.target.value)}
                     placeholder="E-posta"
-                    className="w-full rounded-2xl border border-[var(--accent)]/40 bg-[var(--background)] px-4 py-3 text-sm text-[var(--foreground)] outline-none placeholder:text-gray-500 focus:border-[var(--accent)]"
+                    className="w-full rounded-2xl border border-[var(--accent)]/40 bg-[var(--background)] px-4 py-3 text-sm text-[var(--foreground)] outline-none placeholder:text-gray-500 transition-shadow focus:border-[var(--accent)] focus:shadow-[0_0_0_3px_rgba(212,161,74,0.25)]"
                   />
 
                   <input
@@ -145,14 +184,18 @@ export default function AuthActions() {
                     value={password}
                     onChange={(event) => setPassword(event.target.value)}
                     placeholder="Şifre"
-                    className="w-full rounded-2xl border border-[var(--accent)]/40 bg-[var(--background)] px-4 py-3 text-sm text-[var(--foreground)] outline-none placeholder:text-gray-500 focus:border-[var(--accent)]"
+                    className="w-full rounded-2xl border border-[var(--accent)]/40 bg-[var(--background)] px-4 py-3 text-sm text-[var(--foreground)] outline-none placeholder:text-gray-500 transition-shadow focus:border-[var(--accent)] focus:shadow-[0_0_0_3px_rgba(212,161,74,0.25)]"
                   />
 
                   <button
                     type="submit"
-                    className="mt-2 w-full rounded-2xl bg-[var(--accent)] px-4 py-3 text-sm font-black uppercase tracking-[0.2em] text-white transition-opacity hover:opacity-90"
+                    disabled={isSubmitting}
+                    className="mt-2 flex w-full items-center justify-center gap-2 rounded-2xl bg-[var(--accent)] px-4 py-3 text-sm font-black uppercase tracking-[0.2em] text-white transition-opacity hover:opacity-90 disabled:cursor-wait disabled:opacity-80"
                   >
-                    Giriş Yap
+                    {isSubmitting && (
+                      <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white" />
+                    )}
+                    {isSubmitting ? "Yükleniyor..." : "Giriş Yap"}
                   </button>
                 </form>
 
@@ -160,7 +203,7 @@ export default function AuthActions() {
                   Şifremi Unuttum
                 </a>
               </motion.div>
-            </>
+            </motion.div>
           )}
         </AnimatePresence>
       </>
