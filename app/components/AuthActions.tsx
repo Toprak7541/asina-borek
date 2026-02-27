@@ -1,10 +1,11 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import type { LoyaltyProfile } from "../types/loyalty";
+import GradientText from "./ui/GradientText";
 
 interface SessionUser {
   name?: string | null;
@@ -140,9 +141,14 @@ export default function AuthActions() {
                   <X size={16} />
                 </button>
 
-                <h3 className="text-xl font-black text-[var(--foreground)] font-montserrat tracking-tight">
+                <GradientText
+                  colors={["#e31e24", "#f5f5f5", "#a0a0a0", "#f5f5f5"]}
+                  animationSpeed={8}
+                  showBorder={false}
+                  className="text-xl font-black font-montserrat tracking-tight"
+                >
                   Aşina Club&apos;a Hoş Geldiniz
-                </h3>
+                </GradientText>
 
                 <button
                   onClick={handleGoogleSignIn}
